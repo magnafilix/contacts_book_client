@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { slideInDown } from 'react-animations'
+import theme from '../theme'
 
 const APP_TITLE = 'Contacts Book'
 
@@ -9,16 +10,19 @@ const slideInDownAnimation = keyframes`${slideInDown}`
 const TitleWrapper = styled.div`
   width: 100%;
   position: fixed;
+  padding-top: 6px;
   text-align: center;
   background-color: #93b6ce;
   animation: 1s ${slideInDownAnimation};
   box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  border-top: 5px solid ${theme.colors.lemon};
+  border-bottom: 5px solid ${theme.colors.lemon};
 
   .heading_1 {
     font-size: 56px;
-    font-family: 'Inconsolata', monospace;
-    margin: 8px 0;
-    font-weight: 100;
+    font-family: 'Great Vibes', cursive;
+    margin: 6px 0 0 0;
+    font-weight: 400;
   }
 
   @media (max-width: 678px) {

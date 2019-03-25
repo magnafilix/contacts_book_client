@@ -7,7 +7,7 @@ class LoaderSpinner extends Component {
   render() {
     const {
       type = 'Puff',
-      color = theme.colors.deepgreen,
+      color = theme.colors.lemon,
       width = '110',
       height = '110'
     } = this.props

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-
+import styled, { keyframes } from 'styled-components'
+import { fadeIn } from 'react-animations'
 import theme from '../theme'
+
+const fadeInAnimation = keyframes`${fadeIn}`
 
 const Card = styled.div`
   display: flex;
@@ -10,12 +12,11 @@ const Card = styled.div`
   padding: 5px 12px;
   cursor: pointer;
   min-width: 400px;
-  border-left: 10px solid ${theme.colors.ginger};
-  border-right: 10px solid ${theme.colors.ginger};
   border-radius: 4px;
   margin-bottom: 28px;
   transition: all .3s ease;
-  background-image: linear-gradient(to right, seagreen, ${theme.colors.deepgreen});
+  animation: 2s ${fadeInAnimation};
+  background-image: linear-gradient(to right, ${theme.colors.powder}, ${theme.colors.deepgreen});
   box-shadow: 0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12);
 
   &:hover {
@@ -49,7 +50,7 @@ const ContactName = styled.h3`
 
 const ContactPhone = styled.mark`
   font-size: 22px;
-  background-color: #fbe68b;
+  background-color: ${theme.colors.lemon};
   font-family: 'Inconsolata', monospace;
   margin-left: 10px;
   margin-right: 15px;

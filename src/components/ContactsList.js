@@ -22,7 +22,11 @@ const SpinnerWrapper = styled.div`
 
 class ContactsList extends Component {
   render() {
-    const { contacts = [], isLoading } = this.props
+    const {
+      contacts = [],
+      isLoading,
+      currentPage
+    } = this.props
 
     return (
       <Container>
@@ -37,6 +41,7 @@ class ContactsList extends Component {
               contacts && contacts.length
                 ? (
                   contacts
+                    .slice(currentPage * 10 - 10, currentPage * 10)
                     .map((contact, index) => <ContactCard
                       key={`${contact._id}&${index}`}
                       {...contact}
