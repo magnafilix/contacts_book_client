@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import theme from '../theme'
+
 const Card = styled.div`
   display: flex;
   align-items: center;
@@ -8,12 +10,12 @@ const Card = styled.div`
   padding: 5px 12px;
   cursor: pointer;
   min-width: 400px;
-  border-left: 10px solid #a45437;
-  border-right: 10px solid #a45437;
+  border-left: 10px solid ${theme.colors.ginger};
+  border-right: 10px solid ${theme.colors.ginger};
   border-radius: 4px;
   margin-bottom: 28px;
-  background-color: #1d5358;
   transition: all .3s ease;
+  background-image: linear-gradient(to right, seagreen, ${theme.colors.deepgreen});
   box-shadow: 0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12);
 
   &:hover {

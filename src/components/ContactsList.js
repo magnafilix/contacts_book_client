@@ -34,7 +34,7 @@ class ContactsList extends Component {
               </SpinnerWrapper>
             )
             : (
-              !isLoading && contacts && contacts.length
+              contacts && contacts.length
                 ? (
                   contacts
                     .map((contact, index) => <ContactCard

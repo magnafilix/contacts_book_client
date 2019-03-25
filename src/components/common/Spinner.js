@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Loader from 'react-loader-spinner'
 
+import theme from '../../theme'
+
 class LoaderSpinner extends Component {
   render() {
     const {
       type = 'Puff',
-      color = '#1d5358',
+      color = theme.colors.deepgreen,
       width = '110',
       height = '110'
     } = this.props

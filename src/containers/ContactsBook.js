@@ -23,7 +23,7 @@ class ContactsBookContainer extends Component {
     const { fetchAllContacts } = this.props
     fetchAllContacts()
 
-    setTimeout(() => this.setState({ isLoading: false }), 3000)
+    setTimeout(() => this.setState({ isLoading: false }), 3750)
   }
 
   render() {
