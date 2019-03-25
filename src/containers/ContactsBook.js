@@ -7,6 +7,7 @@ import ContactsListTitle from '../components/contacts/ContactsListTitle'
 import PaginationBar from '../components/common/PaginationBar'
 import { fetchContacts } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
+import { set as setContactToEdit, reset as resetContactToDefault } from '../actions/contactInEdit'
 
 const Container = styled.div`
   width: 100%;
@@ -43,12 +44,15 @@ class ContactsBookContainer extends Component {
 const mapStateToProps = state => ({
   contacts: state.contacts,
   contactsCount: state.contacts.length,
-  currentPage: state.pagination.currentPage
+  currentPage: state.pagination.currentPage,
+  contactInEdit: state.contactInEdit
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchAllContacts: () => dispatch(fetchContacts()),
-  handlePageChange: page => dispatch(setCurrentPage(page))
+  handlePageChange: page => dispatch(setCurrentPage(page)),
+  setContactToEditState: contact => () => dispatch(setContactToEdit(contact)),
+  resetContactToEditDefault: () => dispatch(resetContactToDefault())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsBookContainer)

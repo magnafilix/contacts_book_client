@@ -39,7 +39,7 @@ class PaginationBar extends Component {
     return (
       <PaginationWrapper>
         {
-          !isLoading && contacts.length &&
+          (!isLoading && contacts.length && contacts.length > 10) &&
           (
             <Pagination
               pageRangeDisplayed={3}

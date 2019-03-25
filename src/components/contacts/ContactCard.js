@@ -5,8 +5,8 @@ import theme from '../../theme'
 
 const fadeInAnimation = keyframes`${fadeIn}`
 
-const Card = styled.div`
-  display: flex;
+const StaticCard = styled.div`
+  display: ${props => props.contactMatch ? 'none' : 'flex'};
   align-items: center;
   justify-content: space-around;
   padding: 5px 12px;
@@ -40,6 +40,12 @@ const Card = styled.div`
   }
 `
 
+const DynamicCard = styled.div`
+  display: ${props => props.contactMatch ? 'noneflex' : 'none'};
+  transition: all .3s ease;
+  animation: 2s ${fadeInAnimation};
+`
+
 const ContactName = styled.h3`
   font-size: 22px;
   font-weight: 500;
@@ -58,17 +64,35 @@ const ContactPhone = styled.mark`
 
 class ContactCard extends Component {
   render() {
-    const { first_name, last_name, phone_number } = this.props
+    const {
+      _id,
+      first_name,
+      last_name,
+      phone_number,
+      setContactToEditState,
+      contactInEdit
+    } = this.props
+
+    const singleContact = { _id, first_name, last_name, phone_number }
+    const contactMatch = contactInEdit && contactInEdit._id === _id
 
     return (
-      <Card>
-        <ContactName>
-          {`${first_name} ${last_name}`}
-        </ContactName>
-        <ContactPhone>
-          {phone_number}
-        </ContactPhone>
-      </Card>
+      <>
+        <StaticCard
+          onClick={setContactToEditState(singleContact)}
+          contactMatch={contactMatch}
+        >
+          <ContactName>
+            {`${first_name} ${last_name}`}
+          </ContactName>
+          <ContactPhone>
+            {phone_number}
+          </ContactPhone>
+        </StaticCard>
+        <DynamicCard contactMatch={contactMatch}>
+          something inside
+        </DynamicCard>
+      </>
     )
   }
 }
