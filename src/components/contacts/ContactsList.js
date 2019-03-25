@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import ContactCard from './ContactCard'
-import LoaderSpinner from './common/Spinner'
+import LoaderSpinner from '../common/Spinner'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 125px;
+  margin-bottom: 55px;
 
   @media (max-width: 678px) {
     margin-top: 90px;

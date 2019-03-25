@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { slideInDown } from 'react-animations'
-import theme from '../theme'
+import theme from '../../theme'
 
 const APP_TITLE = 'Contacts Book'
 

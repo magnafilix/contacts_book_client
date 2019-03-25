@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import ContactsList from '../components/ContactsList'
-import ContactsListTitle from '../components/ContactsListTitle'
+import ContactsList from '../components/contacts/ContactsList'
+import ContactsListTitle from '../components/contacts/ContactsListTitle'
 import PaginationBar from '../components/common/PaginationBar'
 import { fetchContacts } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
-
 
 const Container = styled.div`
   width: 100%;

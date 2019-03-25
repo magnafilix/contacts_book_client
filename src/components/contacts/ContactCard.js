@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { fadeIn } from 'react-animations'
-import theme from '../theme'
+import theme from '../../theme'
 
 const fadeInAnimation = keyframes`${fadeIn}`
 
