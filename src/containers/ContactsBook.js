@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import ContactsList from '../components/ContactsList'
+import ContactsListTitle from '../components/ContactsListTitle'
 import { fetchContacts } from '../actions/contacts'
 
-import styled, { keyframes } from 'styled-components'
-import { slideInDown } from 'react-animations'
-
-const APP_TITLE = 'Contacts Book'
-
-const slideInDownAnimation = keyframes`${slideInDown}`
+import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
@@ -18,38 +14,25 @@ const Container = styled.div`
   flex-direction: column;
 `
 
-const BookTitleWrapper = styled.div`
-  width: 100%;
-  position: fixed;
-  text-align: center;
-  margin-bottom: 25px;
-  background-color: #7e9fb5;
-  animation: 1s ${slideInDownAnimation};
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
-
-  .heading_1 {
-    font-size: 56px;
-    font-family: 'Inconsolata', monospace;
-    margin: 8px 0;
-    font-weight: 100;
-  }
-`
-
 class ContactsBookContainer extends Component {
+  state = {
+    isLoading: true
+  }
+
   componentDidMount = () => {
     const { fetchAllContacts } = this.props
     fetchAllContacts()
+
+    setTimeout(() => this.setState({ isLoading: false }), 3000)
   }
 
   render() {
+    const { isLoading } = this.state
+
     return (
       <Container>
-        <BookTitleWrapper>
-          <h1 className='heading_1'>
-            {APP_TITLE}
-          </h1>
-        </BookTitleWrapper>
-        <ContactsList {...this.props} />
+        <ContactsListTitle />
+        <ContactsList {...this.props} isLoading={isLoading} />
       </Container>
     )
   }

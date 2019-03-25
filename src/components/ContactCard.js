@@ -5,8 +5,8 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 5px 12px;
   cursor: pointer;
-  height: 85px;
   min-width: 400px;
   border-left: 10px solid #a45437;
   border-right: 10px solid #a45437;
@@ -19,18 +19,38 @@ const Card = styled.div`
   &:hover {
     box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
   }
+
+  @media (max-width: 678px) {
+    flex-direction: column;
+    padding: 12px 0 16px 0;
+    min-width: 275px;
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      margin-top: 0;
+    }
+
+    mark {
+      font-size: 20px;
+    }
+  }
 `
 
 const ContactName = styled.h3`
   font-size: 22px;
   font-weight: 500;
   font-family: 'Inconsolata', monospace;
+  margin-left: 15px;
+  margin-right: 10px;
 `
 
 const ContactPhone = styled.mark`
   font-size: 22px;
   background-color: #fbe68b;
   font-family: 'Inconsolata', monospace;
+  margin-left: 10px;
+  margin-right: 15px;
 `
 
 class ContactCard extends Component {
@@ -40,7 +60,7 @@ class ContactCard extends Component {
     return (
       <Card>
         <ContactName>
-          {`${first_name} ${last_name}:`}
+          {`${first_name} ${last_name}`}
         </ContactName>
         <ContactPhone>
           {phone_number}
