@@ -49,7 +49,8 @@ const mapStateToProps = state => ({
   contacts: state.contacts,
   contactsCount: state.contacts.length,
   currentPage: state.pagination.currentPage,
-  contactInEdit: state.contactInEdit
+  contactInEdit: state.contactInEdit,
+  apiResponse: state.apiResponse
 })
 
 const mapDispatchToProps = dispatch => ({
