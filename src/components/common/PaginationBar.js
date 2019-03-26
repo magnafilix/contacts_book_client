@@ -22,6 +22,15 @@ const PaginationWrapper = styled.div`
 
     li {
       margin: 0 7px;
+
+      a {
+        color: ${theme.colors.deepgreen};
+        text-decoration: none;
+      }
+    }
+
+    .active {
+      text-decoration: underline;
     }
   }
 `

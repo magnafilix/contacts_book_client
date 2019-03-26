@@ -21,6 +21,10 @@ const SpinnerWrapper = styled.div`
   top: 40%;
 `
 
+const NoContactsYet = styled.h1`
+  font-weight: 300;
+`
+
 class ContactsList extends Component {
   render() {
     const {
@@ -62,7 +66,9 @@ class ContactsList extends Component {
                 )
                 : (
                   <>
-                    <h1>No Contacts in the Book yet.</h1>
+                    <NoContactsYet>
+                      Start off by creating first contact!
+                  </NoContactsYet>
                   </>
                 )
             )
