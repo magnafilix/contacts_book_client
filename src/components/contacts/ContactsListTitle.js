@@ -9,6 +9,7 @@ const slideInDownAnimation = keyframes`${slideInDown}`
 
 const TitleWrapper = styled.div`
   width: 100%;
+  z-index: 999;
   position: fixed;
   padding-top: 6px;
   text-align: center;

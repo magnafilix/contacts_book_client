@@ -28,7 +28,9 @@ class ContactsList extends Component {
       isLoading,
       currentPage,
       setContactToEditState,
-      contactInEdit
+      contactInEdit,
+      setContactField,
+      resetContactToEditDefault
     } = this.props
 
     return (
@@ -48,7 +50,9 @@ class ContactsList extends Component {
                     .map((contact, index) => <ContactCard
                       key={`${contact._id}&${index}`}
                       {...contact}
+                      resetContactToEditDefault={resetContactToEditDefault}
                       setContactToEditState={setContactToEditState}
+                      setContactField={setContactField}
                       contactInEdit={contactInEdit}
                     />)
                 )

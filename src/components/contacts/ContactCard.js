@@ -3,6 +3,8 @@ import styled, { keyframes } from 'styled-components'
 import { fadeIn } from 'react-animations'
 import theme from '../../theme'
 
+import { Button, TextField } from '@material-ui/core'
+
 const fadeInAnimation = keyframes`${fadeIn}`
 
 const StaticCard = styled.div`
@@ -14,7 +16,7 @@ const StaticCard = styled.div`
   min-width: 400px;
   border-radius: 4px;
   margin-bottom: 28px;
-  transition: all .3s ease;
+  transition: all .5s ease;
   animation: 2s ${fadeInAnimation};
   background-image: linear-gradient(to right, ${theme.colors.powder}, ${theme.colors.deepgreen});
   box-shadow: 0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12);
@@ -40,12 +42,6 @@ const StaticCard = styled.div`
   }
 `
 
-const DynamicCard = styled.div`
-  display: ${props => props.contactMatch ? 'noneflex' : 'none'};
-  transition: all .3s ease;
-  animation: 2s ${fadeInAnimation};
-`
-
 const ContactName = styled.h3`
   font-size: 22px;
   font-weight: 500;
@@ -62,19 +58,70 @@ const ContactPhone = styled.mark`
   margin-right: 15px;
 `
 
+const TextFieldsBar = styled.div`
+  display: flex;
+  width: 100%;
+
+  div {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  @media (max-width: 678px) {
+    flex-direction: column;
+  }
+`
+
+const ActionButtonsBar = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+
+  button:first-child {
+    margin-right: 16px;
+  }
+
+  @media (max-width: 678px) {
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+`
+
+const DynamicCard = styled.div`
+  display: ${props => props.contactMatch ? 'flex' : 'none'};
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 28px;
+  transition: all .5s ease;
+  animation: 2s ${fadeInAnimation};
+`
+
 class ContactCard extends Component {
   render() {
     const {
-      _id,
-      first_name,
-      last_name,
-      phone_number,
+      _id: id,
+      first_name: fName,
+      last_name: lName,
+      phone_number: pNumber,
       setContactToEditState,
-      contactInEdit
+      contactInEdit: {
+        _id,
+        first_name,
+        last_name,
+        phone_number
+      },
+      setContactField,
+      resetContactToEditDefault
     } = this.props
 
-    const singleContact = { _id, first_name, last_name, phone_number }
-    const contactMatch = contactInEdit && contactInEdit._id === _id
+    const singleContact = {
+      _id: id,
+      first_name: fName,
+      last_name: lName,
+      phone_number: pNumber
+    }
+    const contactMatch = _id && _id === id
 
     return (
       <>
@@ -83,14 +130,55 @@ class ContactCard extends Component {
           contactMatch={contactMatch}
         >
           <ContactName>
-            {`${first_name} ${last_name}`}
+            {`${fName} ${lName}`}
           </ContactName>
           <ContactPhone>
-            {phone_number}
+            {pNumber}
           </ContactPhone>
         </StaticCard>
         <DynamicCard contactMatch={contactMatch}>
-          something inside
+          {
+            (_id && contactMatch) &&
+            <>
+              <TextFieldsBar>
+                <TextField
+                  label='First Name'
+                  value={first_name}
+                  onChange={setContactField('first_name')}
+                  variant='outlined'
+                  margin='normal'
+                />
+                <TextField
+                  label='Last Name'
+                  value={last_name}
+                  onChange={setContactField('last_name')}
+                  variant='outlined'
+                  margin='normal'
+                />
+                <TextField
+                  label='Phone Number'
+                  value={phone_number}
+                  onChange={setContactField('phone_number')}
+                  variant='outlined'
+                  margin='normal'
+                />
+              </TextFieldsBar>
+              <ActionButtonsBar>
+                <Button
+                  variant="outlined"
+                  onClick={resetContactToEditDefault}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="contained"
+                // onClick={() => this.setState({ isModalOpen: true })}
+                >
+                  Update
+              </Button>
+              </ActionButtonsBar>
+            </>
+          }
         </DynamicCard>
       </>
     )

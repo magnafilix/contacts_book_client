@@ -7,7 +7,11 @@ import ContactsListTitle from '../components/contacts/ContactsListTitle'
 import PaginationBar from '../components/common/PaginationBar'
 import { fetchContacts } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
-import { set as setContactToEdit, reset as resetContactToDefault } from '../actions/contactInEdit'
+import {
+  set as setContactToEdit,
+  reset as resetContactToDefault,
+  setContactFields
+} from '../actions/contactInEdit'
 
 const Container = styled.div`
   width: 100%;
@@ -52,7 +56,8 @@ const mapDispatchToProps = dispatch => ({
   fetchAllContacts: () => dispatch(fetchContacts()),
   handlePageChange: page => dispatch(setCurrentPage(page)),
   setContactToEditState: contact => () => dispatch(setContactToEdit(contact)),
-  resetContactToEditDefault: () => dispatch(resetContactToDefault())
+  resetContactToEditDefault: () => dispatch(resetContactToDefault()),
+  setContactField: name => event => dispatch(setContactFields(name, event))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsBookContainer)

@@ -7,7 +7,9 @@ export default (state = {}, action) => {
     case actionTypes.CONTACT_IN_EDIT.SET:
       return { ...payload.value }
     case actionTypes.CONTACT_IN_EDIT.RESET:
-      return state
+      return {}
+    case actionTypes.CONTACT_IN_EDIT.SET_FIELD:
+      return Object.assign({}, state, { [payload.field]: payload.value.target.value })
     default:
       return state
   }
