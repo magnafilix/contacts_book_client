@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import ContactsList from '../components/contacts/ContactsList'
 import ContactsListTitle from '../components/contacts/ContactsListTitle'
 import PaginationBar from '../components/common/PaginationBar'
+import SnackBarComponent from '../components/common/SnackBar'
+
 import { fetchContacts, updateContact } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
 import {
@@ -22,7 +24,8 @@ const Container = styled.div`
 
 class ContactsBookContainer extends Component {
   state = {
-    isLoading: true
+    isLoading: true,
+    isSnackBarOpen: false
   }
 
   componentDidMount = () => {
@@ -32,11 +35,24 @@ class ContactsBookContainer extends Component {
     setTimeout(() => this.setState({ isLoading: false }), 3750)
   }
 
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.apiResponse && nextProps.apiResponse !== this.props.apiResponse)
+      this.setState({ isSnackBarOpen: true })
+  }
+
+  toggleSnackBar = isSnackBarOpen => this.setState({ isSnackBarOpen })
+
   render() {
-    const { isLoading } = this.state
+    const { isLoading, isSnackBarOpen } = this.state
+    const { apiResponse } = this.props
 
     return (
       <Container>
+        <SnackBarComponent
+          isSnackBarOpen={isSnackBarOpen}
+          toggleSnackBar={this.toggleSnackBar}
+          apiMessage={apiResponse}
+        />
         <ContactsListTitle />
         <ContactsList {...this.props} isLoading={isLoading} />
         <PaginationBar {...this.props} isLoading={isLoading} />
