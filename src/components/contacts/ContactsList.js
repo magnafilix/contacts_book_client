@@ -30,7 +30,8 @@ class ContactsList extends Component {
       setContactToEditState,
       contactInEdit,
       setContactField,
-      resetContactToEditDefault
+      resetContactToEditDefault,
+      updateContactData
     } = this.props
 
     return (
@@ -52,6 +53,7 @@ class ContactsList extends Component {
                       {...contact}
                       resetContactToEditDefault={resetContactToEditDefault}
                       setContactToEditState={setContactToEditState}
+                      updateContactData={updateContactData}
                       setContactField={setContactField}
                       contactInEdit={contactInEdit}
                     />)

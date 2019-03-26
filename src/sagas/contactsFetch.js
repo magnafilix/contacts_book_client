@@ -7,7 +7,6 @@ export default function* contactsFetch() {
   try {
     const response = yield call(request.get, '/contact/all')
     yield put(setContacts(response.data.contacts))
-
   } catch (error) {
     console.log(error)
   }

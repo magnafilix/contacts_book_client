@@ -1,7 +1,7 @@
 import { defineAction } from 'redux-define'
 
 export default {
-  CONTACTS: defineAction('CONTACTS', ['FETCH', 'SET']),
+  CONTACTS: defineAction('CONTACTS', ['FETCH', 'SET', 'UPDATE', 'SET_ONE']),
   PAGINATION: defineAction('PAGINATION', ['SET']),
   CONTACT_IN_EDIT: defineAction('CONTACT_IN_EDIT', ['SET', 'RESET', 'SET_FIELD'])
 }

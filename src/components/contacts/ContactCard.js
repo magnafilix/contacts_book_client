@@ -112,7 +112,8 @@ class ContactCard extends Component {
         phone_number
       },
       setContactField,
-      resetContactToEditDefault
+      resetContactToEditDefault,
+      updateContactData
     } = this.props
 
     const singleContact = {
@@ -172,7 +173,7 @@ class ContactCard extends Component {
                 </Button>
                 <Button
                   variant="contained"
-                // onClick={() => this.setState({ isModalOpen: true })}
+                  onClick={updateContactData({ _id, first_name, last_name, phone_number })}
                 >
                   Update
               </Button>
