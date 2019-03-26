@@ -9,7 +9,7 @@ import SnackBarComponent from '../components/common/SnackBar'
 import AddButton from '../components/common/AddButton'
 import CreateNewContact from '../components/contacts/CreateNew'
 
-import { fetchContacts, updateContact, createContact } from '../actions/contacts'
+import { fetchContacts, updateContact, createContact, deleteContact } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
 import {
   set as setContactToEdit,
@@ -102,7 +102,8 @@ const mapDispatchToProps = dispatch => ({
   resetContactToEditDefault: () => dispatch(resetContactToDefault()),
   setContactField: name => event => dispatch(setContactFields(name, event)),
   updateContactData: contact => () => dispatch(updateContact(contact)),
-  createNewContact: contactData => () => dispatch(createContact(contactData))
+  createNewContact: contactData => () => dispatch(createContact(contactData)),
+  deleteExisitingContact: contactId => () => dispatch(deleteContact(contactId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsBookContainer)

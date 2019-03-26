@@ -12,7 +12,7 @@ const Container = styled.div`
   margin-bottom: 55px;
 
   @media (max-width: 678px) {
-    margin-top: 90px;
+    margin-top: 110px;
   }
 `
 
@@ -31,7 +31,8 @@ class ContactsList extends Component {
       contactInEdit,
       setContactField,
       resetContactToEditDefault,
-      updateContactData
+      updateContactData,
+      deleteExisitingContact
     } = this.props
 
     return (
@@ -52,6 +53,7 @@ class ContactsList extends Component {
                       key={`${contact._id}&${index}`}
                       {...contact}
                       resetContactToEditDefault={resetContactToEditDefault}
+                      deleteExisitingContact={deleteExisitingContact}
                       setContactToEditState={setContactToEditState}
                       updateContactData={updateContactData}
                       setContactField={setContactField}

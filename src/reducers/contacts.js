@@ -10,7 +10,9 @@ export default (state = {}, action) => {
       const foundIndex = state.findIndex(x => x._id === payload.value._id)
       state[foundIndex] = payload.value
       return state
-    case actionTypes.CONTACTS.ADD_ONE:
+    case actionTypes.CONTACTS.REMOVE_ONE:
+      const index = state.findIndex(x => x._id === payload.value)
+      state.splice(index, 1)
       return state
     default:
       return state

@@ -4,6 +4,7 @@ import { fadeIn } from 'react-animations'
 import theme from '../../theme'
 
 import { Button, TextField } from '@material-ui/core'
+import { Delete } from '@material-ui/icons'
 
 const fadeInAnimation = keyframes`${fadeIn}`
 
@@ -95,6 +96,10 @@ const DynamicCard = styled.div`
   margin-bottom: 28px;
   transition: all .5s ease;
   animation: 2s ${fadeInAnimation};
+
+  svg {
+    cursor: pointer;
+  }
 `
 
 class ContactCard extends Component {
@@ -113,6 +118,7 @@ class ContactCard extends Component {
       },
       setContactField,
       resetContactToEditDefault,
+      deleteExisitingContact,
       updateContactData
     } = this.props
 
@@ -141,6 +147,7 @@ class ContactCard extends Component {
           {
             (_id && contactMatch) &&
             <>
+              <Delete onClick={deleteExisitingContact(_id)} />
               <TextFieldsBar>
                 <TextField
                   label='First Name'

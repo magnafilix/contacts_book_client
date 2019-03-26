@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { IconButton, Snackbar } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
+import { Close } from '@material-ui/icons'
 
 class SnackBarComponent extends Component {
   render() {
@@ -28,7 +28,7 @@ class SnackBarComponent extends Component {
             color="inherit"
             onClick={() => toggleSnackBar(false)}
           >
-            <CloseIcon />
+            <Close />
           </IconButton>
         ]}
       />
