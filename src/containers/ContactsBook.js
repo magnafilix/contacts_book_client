@@ -6,6 +6,8 @@ import ContactsList from '../components/contacts/ContactsList'
 import ContactsListTitle from '../components/contacts/ContactsListTitle'
 import PaginationBar from '../components/common/PaginationBar'
 import SnackBarComponent from '../components/common/SnackBar'
+import AddButton from '../components/common/AddButton'
+import CreateNewContact from '../components/contacts/CreateNew'
 
 import { fetchContacts, updateContact } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
@@ -25,7 +27,8 @@ const Container = styled.div`
 class ContactsBookContainer extends Component {
   state = {
     isLoading: true,
-    isSnackBarOpen: false
+    isSnackBarOpen: false,
+    creatingNewContact: false
   }
 
   componentDidMount = () => {
@@ -42,8 +45,10 @@ class ContactsBookContainer extends Component {
 
   toggleSnackBar = isSnackBarOpen => this.setState({ isSnackBarOpen })
 
+  toggleCreateNewContact = creatingNewContact => this.setState({ creatingNewContact })
+
   render() {
-    const { isLoading, isSnackBarOpen } = this.state
+    const { isLoading, isSnackBarOpen, creatingNewContact } = this.state
     const { apiResponse } = this.props
 
     return (
@@ -54,8 +59,21 @@ class ContactsBookContainer extends Component {
           apiMessage={apiResponse}
         />
         <ContactsListTitle />
-        <ContactsList {...this.props} isLoading={isLoading} />
-        <PaginationBar {...this.props} isLoading={isLoading} />
+        <AddButton createNewContact={this.toggleCreateNewContact} />
+        {
+          creatingNewContact
+            ? (
+              <CreateNewContact
+                toggleCreateNewContact={this.toggleCreateNewContact}
+              />
+            )
+            : (
+              <>
+                <ContactsList {...this.props} isLoading={isLoading} />
+                <PaginationBar {...this.props} isLoading={isLoading} />
+              </>
+            )
+        }
       </Container>
     )
   }

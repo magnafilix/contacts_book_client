@@ -169,7 +169,7 @@ class ContactCard extends Component {
                   variant="outlined"
                   onClick={resetContactToEditDefault}
                 >
-                  Cancel
+                  Back
                 </Button>
                 <Button
                   variant="contained"
