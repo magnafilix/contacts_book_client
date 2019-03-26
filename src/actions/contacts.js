@@ -1,5 +1,10 @@
 import actionTypes from '../constants/actionTypes'
 
+export const createContact = value => dispatch => dispatch({
+  type: actionTypes.CONTACTS.CREATE,
+  payload: { value }
+})
+
 export const updateContact = value => dispatch => dispatch({
   type: actionTypes.CONTACTS.UPDATE,
   payload: { value }

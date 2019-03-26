@@ -31,10 +31,10 @@ const ButtonWrapper = styled.div`
 
 class AddButton extends Component {
   render() {
-    const { createNewContact } = this.props
+    const { toggleCreateNewContact } = this.props
 
     return (
-      <ButtonWrapper onClick={() => createNewContact(true)}>
+      <ButtonWrapper onClick={() => toggleCreateNewContact(true)}>
         <Fab color="primary" aria-label="Add">
           <AddIcon />
         </Fab>

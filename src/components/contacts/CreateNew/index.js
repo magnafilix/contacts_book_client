@@ -45,7 +45,7 @@ class CreateNewContact extends Component {
   setContactField = name => event => this.setState({ [name]: event.target.value })
 
   render() {
-    const { toggleCreateNewContact } = this.props
+    const { toggleCreateNewContact, createNewContact } = this.props
     const {
       first_name,
       last_name,
@@ -86,7 +86,7 @@ class CreateNewContact extends Component {
           </Button>
           <Button
             variant="contained"
-          // onClick={updateContactData({ first_name, last_name, phone_number })}
+            onClick={createNewContact({ first_name, last_name, phone_number })}
           >
             Create
           </Button>

@@ -9,7 +9,7 @@ import SnackBarComponent from '../components/common/SnackBar'
 import AddButton from '../components/common/AddButton'
 import CreateNewContact from '../components/contacts/CreateNew'
 
-import { fetchContacts, updateContact } from '../actions/contacts'
+import { fetchContacts, updateContact, createContact } from '../actions/contacts'
 import { set as setCurrentPage } from '../actions/pagination'
 import {
   set as setContactToEdit,
@@ -39,8 +39,13 @@ class ContactsBookContainer extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.apiResponse && nextProps.apiResponse !== this.props.apiResponse)
+    if (nextProps.apiResponse && nextProps.apiResponse !== this.props.apiResponse) {
+      if (nextProps.apiResponse.code === 201 && nextProps.apiResponse.message === 'Created') {
+        this.toggleCreateNewContact(false)
+      }
+
       this.setState({ isSnackBarOpen: true })
+    }
   }
 
   toggleSnackBar = isSnackBarOpen => this.setState({ isSnackBarOpen })
@@ -49,7 +54,7 @@ class ContactsBookContainer extends Component {
 
   render() {
     const { isLoading, isSnackBarOpen, creatingNewContact } = this.state
-    const { apiResponse } = this.props
+    const { apiResponse, createNewContact } = this.props
 
     return (
       <Container>
@@ -59,12 +64,15 @@ class ContactsBookContainer extends Component {
           apiMessage={apiResponse}
         />
         <ContactsListTitle />
-        <AddButton createNewContact={this.toggleCreateNewContact} />
+        <AddButton
+          toggleCreateNewContact={this.toggleCreateNewContact}
+        />
         {
           creatingNewContact
             ? (
               <CreateNewContact
                 toggleCreateNewContact={this.toggleCreateNewContact}
+                createNewContact={createNewContact}
               />
             )
             : (
@@ -93,7 +101,8 @@ const mapDispatchToProps = dispatch => ({
   setContactToEditState: contact => () => dispatch(setContactToEdit(contact)),
   resetContactToEditDefault: () => dispatch(resetContactToDefault()),
   setContactField: name => event => dispatch(setContactFields(name, event)),
-  updateContactData: contact => () => dispatch(updateContact(contact))
+  updateContactData: contact => () => dispatch(updateContact(contact)),
+  createNewContact: contactData => () => dispatch(createContact(contactData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsBookContainer)
